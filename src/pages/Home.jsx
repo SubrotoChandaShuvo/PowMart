@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "../component/Slider";
-import PopularSection from "../component/PopularSection";
 import "animate.css";
+import ShopByCategory from "../component/ShopByCategory";
 
 const Home = () => {
   return (
@@ -18,7 +18,7 @@ const Home = () => {
       </h1>
 
       <Slider />
-      <PopularSection></PopularSection>
+      <ShopByCategory/>
     </div>
   );
 };

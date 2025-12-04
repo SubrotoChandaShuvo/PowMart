@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 import { motion } from "motion/react";
 
-const Services = () => {
+const PetAndSupplies = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const Services = () => {
                bg-linear-to-r from-blue-500 via-purple-500 to-pink-500
                bg-clip-text text-transparent"
         >
-          Our Popular Winter Care Services
+          Welcome to Pet & Supplies Section
         </h3>
       </div>
       <div className="px-8 md:px-8 lg:px-[120px]">
@@ -63,4 +63,4 @@ const Services = () => {
   );
 };
 
-export default Services;
+export default PetAndSupplies;
