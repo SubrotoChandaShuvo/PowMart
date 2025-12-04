@@ -78,12 +78,12 @@ const Register = () => {
 
   return (
     <div>
-      <title>SignUp</title>
+      <title>Register</title>
       <div className="hero min-h-lvw lg:min-h-screen p-4 md:p-0">
         <div className="card bg-base-100 w-full max-w-sm md:max-w-md lg:max-w-lg shrink-0 shadow-2xl transform transition-transform duration-300 hover:scale-105 shadow-gray-600">
           <div className="card-body">
             <form onSubmit={handleSubmit} className="fieldset">
-              <h1 className="text-3xl text-center">Signup</h1>
+              <h1 className="text-3xl text-center">Register</h1>
               <label className="text-[15px]">Email</label>
               <input
                 name="email"
@@ -133,14 +133,14 @@ const Register = () => {
                 className="btn btn-primary transform transition-transform duration-300 hover:scale-102"
                 disabled={loading}
               >
-                Signup
+                Register
               </button>
               <p className="text-center">Or Register with Google</p>
               <button
                 onClick={googleSignup}
                 className="btn bg-gray-300 transform transition-transform duration-300 hover:scale-102"
               >
-                <FcGoogle className="text-2xl" />
+                <FcGoogle className="text-2xl" /> Google
               </button>
             </form>
           </div>

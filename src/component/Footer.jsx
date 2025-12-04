@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router";
+import { Link, NavLink } from "react-router";
 
 const Footer = () => {
   return (
@@ -16,14 +16,18 @@ const Footer = () => {
         </Link>
 
         <p>
-          Pet World.
+          PawMart connects pet lovers, breeders,
           <br />
-          Providing reliable tech since 2022
+          and shops in one trusted marketplace
+          <br /> to adopt pets or buy essential pet products with ease.
         </p>
       </aside>
       <nav>
         <h6 className="footer-title">Services</h6>
-        <a className="link link-hover">Pet Care</a>
+        <NavLink to="/" className="link link-hover">
+          Home
+        </NavLink>
+
         <a className="link link-hover">Pet Care in Winter</a>
         <a className="link link-hover">Winter pet clothing</a>
         <a className="link link-hover">Pets care veterinary clinic</a>
@@ -32,7 +36,6 @@ const Footer = () => {
         <h6 className="footer-title">Company</h6>
         <a className="link link-hover">About us</a>
         <a className="link link-hover">Contact</a>
-        <a className="link link-hover">Press kit</a>
       </nav>
       <nav>
         <h6 className="footer-title">Legal</h6>

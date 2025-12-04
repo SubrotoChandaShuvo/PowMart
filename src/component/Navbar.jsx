@@ -6,12 +6,12 @@ import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
-  const {user}= useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
-  const handleSignOut=()=>{
-    signOut(auth)
+  const handleSignOut = () => {
+    signOut(auth);
     toast.success("Logout Successful! 🎉");
-  }
+  };
 
   return (
     <div className="navbar bg-base-100 shadow-sm ">
@@ -39,39 +39,49 @@ const Navbar = () => {
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow"
           >
             <li>
-              <NavLink to="/"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }>Home</NavLink>
+              <NavLink
+                to="/"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                Home
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/services"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-              >Services</NavLink>
+              <NavLink
+                to="/services"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                Pets & Supplies
+              </NavLink>
             </li>
             <li>
-              <NavLink to="/profile"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-              >My Profile</NavLink>
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Profile
+              </NavLink>
             </li>
             <li>
-            <NavLink
-              to="/stories"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-            >
-              Stories
-            </NavLink>
-          </li>
+              <NavLink
+                to="/stories"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                Stories
+              </NavLink>
+            </li>
           </ul>
         </div>
         <Link to="/" className="">
-                    <p
+          <p
             class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 pl-2
             text-3xl font-extrabold tracking-wide drop-shadow-[0_0_25px_rgba(168,85,247,0.5)]
             animate-pulse"
@@ -99,44 +109,62 @@ const Navbar = () => {
                 isActive ? "text-blue-500 font-bold" : "text-gray-700"
               }
             >
-              Services
+              Pets & Supplies
             </NavLink>
           </li>
+
           <li>
-            <NavLink
-              to="/profile"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-            >
-              My Profile
-            </NavLink>
+            {user && (
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Profile
+              </NavLink>
+            )}
           </li>
           <li>
-            <NavLink
-              to="/stories"
-              className={({ isActive }) =>
-                isActive ? "text-blue-500 font-bold" : "text-gray-700"
-              }
-            >
-              Stories
-            </NavLink>
+            {user && (
+              <NavLink
+                to="/stories"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                Stories
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>
-      {
-        user &&
+      {user && (
         <div className="navbar-end pr-3">
-        <Link onClick={handleSignOut} className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg">Logout</Link>
-      </div>
-      }
-      {
-        !user &&
+          <Link
+            onClick={handleSignOut}
+            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"
+          >
+            Logout
+          </Link>
+        </div>
+      )}
+      {!user && (
         <div className="navbar-end pr-3">
-        <Link to='/login' className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg">Login</Link>
-      </div>
-      }
-      
+          <Link
+            to="/login"
+            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"
+          >
+            Login
+          </Link>
+          <Link
+            to="/register"
+            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 ml-1 rounded-md hover:opacity-70 text-lg"
+          >
+            Register
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

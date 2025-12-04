@@ -115,8 +115,8 @@ const Login = () => {
               </div>
               <div className="">
                 <span className="pr-4">Don't have an account? </span>
-                <Link className="link link-hover text-blue-500" to={"/signup"}>
-                  Signup
+                <Link className="link link-hover text-blue-500" to={"/register"}>
+                 Register
                 </Link>
               </div>
               <button className="btn btn-primary transform transition-transform duration-300 hover:scale-102">
@@ -127,7 +127,7 @@ const Login = () => {
                 onClick={googleSignin}
                 className="btn transform transition-transform duration-300 hover:scale-102 bg-gray-300"
               >
-                <FcGoogle className="text-2xl" />
+                <FcGoogle className="text-2xl" /> Google
               </button>
             </form>
           </div>
