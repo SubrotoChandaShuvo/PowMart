@@ -11,6 +11,7 @@ import ForgetPass from "../pages/ForgetPass";
 import SuccessStories from "../pages/SuccessStories";
 import PetAndSupplies from "../pages/PetAndSupplies";
 import AddProducts from "../pages/AddProducts";
+import FilterPage from "../component/FilterPage";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
       {
         path: "/details/:id",
         element: <PrivateRoute><ServiceDetails/></PrivateRoute>
+      },
+      {
+        path: "/filter/:category",
+        element: <FilterPage/>
       },
       {
         path: "/forget/:email",

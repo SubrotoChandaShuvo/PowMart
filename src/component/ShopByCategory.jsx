@@ -2,38 +2,42 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 const ShopByCategory = () => {
-  // const [services, setServices] = useState([]);
+  const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("./services.json")
+    fetch("http://localhost:3000/listings")
       .then((res) => res.json())
       .then((data) => setServices(data))
       .catch((err) => console.log(err));
   }, []);
 
-  //   console.log(services);
+    console.log(services);
 
 
   const categories = [
   {
+    type: "Pet",
     title: "Pets (Adoption)",
     icon: "🐶",
     image:
       "https://i.pinimg.com/1200x/78/05/8e/78058e978c558f8fb4d8c6ccf5a17685.jpg",
   },
   {
+    type: "Food",
     title: "Pet Food",
     icon: "🍖",
     image:
       "https://i.pinimg.com/1200x/93/de/0e/93de0e934ff405e8a0096044e2801aca.jpg",
   },
   {
+    type: "Accessories",
     title: "Accessories",
     icon: "🧸",
     image:
       "https://i.pinimg.com/1200x/13/54/3f/13543f5e433eaa744acde16c94ce07c0.jpg",
   },
   {
+    type: "Care Products",
     title: "Pet Care",
     icon: "💊",
     image:
@@ -42,41 +46,7 @@ const ShopByCategory = () => {
 ];
 
   return (
-    // <div className="mt-8 px-8 md:px-8 lg:px-[120px]">
-    //   <div className="mt-12">
-    //     <h3 className="font-bold text-4xl text-center pb-8">
-    //       Shop By Category
-    //     </h3>
-    //   </div>
-
-    //   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16">
-    //     {services.slice(0, 6).map((service) => (
-    //       <div
-    //         key={service.id}
-    //         className="card bg-base-100 w-90 shadow-sm
-    //       transform transition-transform duration-300 hover:scale-105"
-    //       >
-    //         <figure>
-    //           <img
-    //             className="w-full h-[300px] object-cover"
-    //             src={service?.image}
-    //             alt="Shoes"
-    //           />
-    //         </figure>
-    //         <div className="card-body items-center">
-    //           <h2 className="card-title ">{service?.serviceName}</h2>
-    //           <div className="flex justify-between items-center w-full px-12 pb-3">
-    //             <span className="font-semibold">${service?.price}</span>
-    //             <span className="">⭐ {service?.rating}</span>
-    //           </div>
-    //           <div className="card-actions justify-end">
-    //             <Link to={`/details/${service?.serviceId}`}><button className="btn btn-primary">View details</button></Link>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     ))}
-    //   </div>
-    // </div>
+    
 
 
     <div className="w-full flex flex-col items-center py-10">
@@ -87,6 +57,7 @@ const ShopByCategory = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 w-full max-w-7xl px-4">
         {categories.map((cat, i) => (
+        <Link to={`/filter/${cat?.type}`}>
           <div
             key={i}
             className="relative rounded-2xl overflow-hidden shadow-lg cursor-pointer group"
@@ -105,7 +76,9 @@ const ShopByCategory = () => {
               </span>
             </div>
           </div>
+          </Link>
         ))}
+
       </div>
     </div>
   );
