@@ -15,19 +15,19 @@ const FilterPage = () => {
           .catch((err) => console.log(err));
       }, [category]);
 
-      console.log(services);
+    //   console.log(services);
       
 
     return (
         <div className="my-8 ">
-      {/* <title>Pet and Supplies</title> */}
+      <title>Category Section</title>
       <div className="mt-12 mb-4">
         <h3
           className="animate__animated animate__bounce text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-8
                bg-linear-to-r from-blue-500 via-purple-500 to-pink-500
                bg-clip-text text-transparent"
         >
-          Welcome to filter
+          Welcome to {`${category}`} Section
         </h3>
       </div>
       <div className="px-8 md:px-8 lg:px-[120px]">
@@ -64,7 +64,7 @@ const FilterPage = () => {
                 <div className="flex justify-between items-center w-full text-[13px]">
                   <span className="">Location: {service?.location}</span>
                 </div>
-                
+
                 <div className="card-actions justify-end">
                   <Link to={`/details/${service?._id}`}>
                     <button className="btn btn-primary">View details</button>

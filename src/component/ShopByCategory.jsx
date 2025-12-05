@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from "react";
+// import React, { useEffect, useState } from "react";
 import { Link } from "react-router";
 
 const ShopByCategory = () => {
-  const [services, setServices] = useState([]);
+//   const [services, setServices] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/listings")
-      .then((res) => res.json())
-      .then((data) => setServices(data))
-      .catch((err) => console.log(err));
-  }, []);
+//   useEffect(() => {
+//     fetch("http://localhost:3000/listings")
+//       .then((res) => res.json())
+//       .then((data) => setServices(data))
+//       .catch((err) => console.log(err));
+//   }, []);
 
-    console.log(services);
+    // console.log(services);
 
 
   const categories = [

@@ -12,6 +12,7 @@ import SuccessStories from "../pages/SuccessStories";
 import PetAndSupplies from "../pages/PetAndSupplies";
 import AddProducts from "../pages/AddProducts";
 import FilterPage from "../component/FilterPage";
+import MyProducts from "../pages/MyProducts";
 
 const router = createBrowserRouter([
   {
@@ -54,6 +55,10 @@ const router = createBrowserRouter([
       {
         path: "/forget/:email",
         element: <ForgetPass/>
+      },
+      {
+        path: "/my-products",
+        element: <PrivateRoute><MyProducts/></PrivateRoute>
       },
       {
         path: "/stories",
