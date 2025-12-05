@@ -3,17 +3,23 @@ import { Link } from "react-router";
 import { motion } from "motion/react";
 
 const PetAndSupplies = () => {
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [services, setServices] = useState([]);
 
   useEffect(() => {
     fetch("http://localhost:3000/listings")
       .then((res) => res.json())
       .then((data) => setServices(data))
-      .catch((err) => console.log(err))
+      .catch((err) => console.log(err));
   }, []);
 
+  const categories = [...new Set(services.map((service) => service.category))];
+
+  const filteredServices = !selectedCategory
+    ? services
+    : services.filter((service) => service.category === selectedCategory);
+
   // console.log(services);
-  
 
   return (
     <div className="my-8 ">
@@ -27,9 +33,25 @@ const PetAndSupplies = () => {
           Welcome to Pet & Supplies Section
         </h3>
       </div>
+
+      <div className="flex justify-end mb-8 px-8 md:px-8 lg:px-[95px] font-semibold">
+        <select
+          value={selectedCategory || ""}
+          onChange={(e) => setSelectedCategory(e.target.value || null)}
+          className="select select-bordered w-full max-w-xs"
+        >
+          <option value="">All Categories</option>
+          {categories.map((category) => (
+            <option key={category} value={category}>
+              {category}
+            </option>
+          ))}
+        </select>
+      </div>
+
       <div className="px-8 md:px-8 lg:px-[120px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 ">
-          {services.map((service) => (
+          {filteredServices.map((service) => (
             <motion.button
               initial={{ scale: 0.6 }}
               animate={{
@@ -51,7 +73,12 @@ const PetAndSupplies = () => {
               <div className="card-body">
                 <h2 className="card-title">{service?.name}</h2>
                 <div className="flex justify-between items-center w-full text-[13px]">
-                  <span className="">Price: ${service?.price !== 0 ? service?.price :"Free for Adoption"}</span>
+                  <span className="">
+                    Price: $
+                    {service?.price !== 0
+                      ? service?.price
+                      : "Free for Adoption"}
+                  </span>
                 </div>
                 <div className="flex justify-between items-center w-full text-[13px]">
                   <span className="">Date: {service?.date}</span>
@@ -63,7 +90,6 @@ const PetAndSupplies = () => {
                   <Link to={`/details/${service?._id}`}>
                     <button className="btn btn-primary">View details</button>
                   </Link>
-                  
                 </div>
               </div>
             </motion.button>
