@@ -116,6 +116,18 @@ const Navbar = () => {
           <li>
             {user && (
               <NavLink
+                to="/addProducts"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                Add Products
+              </NavLink>
+            )}
+          </li>
+          <li>
+            {user && (
+              <NavLink
                 to="/profile"
                 className={({ isActive }) =>
                   isActive ? "text-blue-500 font-bold" : "text-gray-700"

@@ -6,14 +6,18 @@ const PetAndSupplies = () => {
   const [services, setServices] = useState([]);
 
   useEffect(() => {
-    fetch("/services.json")
+    fetch("http://localhost:3000/listings")
       .then((res) => res.json())
       .then((data) => setServices(data))
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
   }, []);
+
+  console.log(services);
+  
+
   return (
     <div className="my-8 ">
-      <title>Services</title>
+      <title>Pet and Supplies</title>
       <div className="mt-12 mb-4">
         <h3
           className="animate__animated animate__bounce text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-8
@@ -26,10 +30,11 @@ const PetAndSupplies = () => {
       <div className="px-8 md:px-8 lg:px-[120px]">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-16 ">
           {services.map((service) => (
-            <motion.button initial={{ scale: 0.6 }}
+            <motion.button
+              initial={{ scale: 0.6 }}
               animate={{
                 scale: 1,
-                transition: { duration: 0.8},
+                transition: { duration: 0.8 },
               }}
               div
               key={service.id}
@@ -43,14 +48,19 @@ const PetAndSupplies = () => {
                   alt="Shoes"
                 />
               </figure>
-              <div className="card-body items-center">
-                <h2 className="card-title ">{service?.serviceName}</h2>
-                <div className="flex justify-between items-center w-full px-20 pb-1 text-[16px]">
-                  <span className="font-semibold">${service?.price}</span>
-                  <span className="font-semibold">⭐ {service?.rating}</span>
+              <div className="card-body">
+                <h2 className="card-title">{service?.name}</h2>
+                <div className="flex justify-between items-center w-full text-[13px]">
+                  <span className="">Price: ${service?.price !== 0 ? service?.price :"Free for Adoption"}</span>
+                </div>
+                <div className="flex justify-between items-center w-full text-[13px]">
+                  <span className="">Date: {service?.date}</span>
+                </div>
+                <div className="flex justify-between items-center w-full text-[13px]">
+                  <span className="">Location: {service?.location}</span>
                 </div>
                 <div className="card-actions justify-end">
-                  <Link to={`/details/${service?.serviceId}`}>
+                  <Link to={`/details/${service?._Id}`}>
                     <button className="btn btn-primary">View details</button>
                   </Link>
                 </div>

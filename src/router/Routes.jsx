@@ -10,6 +10,7 @@ import ServiceDetails from "../pages/ServiceDetails";
 import ForgetPass from "../pages/ForgetPass";
 import SuccessStories from "../pages/SuccessStories";
 import PetAndSupplies from "../pages/PetAndSupplies";
+import AddProducts from "../pages/AddProducts";
 
 const router = createBrowserRouter([
   {
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
         element: <Login/>
       },
       {
-        path: "/login",
-        element: <Login/>
+        path: "/addProducts",
+        element: <PrivateRoute><AddProducts/></PrivateRoute>
       },
       {
         path: "/register",
