@@ -12,7 +12,7 @@ const PetAndSupplies = () => {
       .catch((err) => console.log(err))
   }, []);
 
-  console.log(services);
+  // console.log(services);
   
 
   return (
@@ -38,7 +38,7 @@ const PetAndSupplies = () => {
               }}
               div
               key={service.id}
-              className="card bg-base-100 w-90 shadow-sm
+              className="card bg-base-100 md:w-90 shadow-sm
             transform transition-transform duration-300 hover:scale-105"
             >
               <figure>
@@ -60,9 +60,10 @@ const PetAndSupplies = () => {
                   <span className="">Location: {service?.location}</span>
                 </div>
                 <div className="card-actions justify-end">
-                  <Link to={`/details/${service?._Id}`}>
+                  <Link to={`/details/${service?._id}`}>
                     <button className="btn btn-primary">View details</button>
                   </Link>
+                  
                 </div>
               </div>
             </motion.button>
