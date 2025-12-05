@@ -56,12 +56,15 @@ const FilterPage = () => {
                 <div className="flex justify-between items-center w-full text-[13px]">
                   <span className="">Price: ${service?.price !== 0 ? service?.price :"Free for Adoption"}</span>
                 </div>
+
                 <div className="flex justify-between items-center w-full text-[13px]">
                   <span className="">Date: {service?.date}</span>
                 </div>
+
                 <div className="flex justify-between items-center w-full text-[13px]">
                   <span className="">Location: {service?.location}</span>
                 </div>
+                
                 <div className="card-actions justify-end">
                   <Link to={`/details/${service?._id}`}>
                     <button className="btn btn-primary">View details</button>
