@@ -33,7 +33,7 @@ const MyProducts = () => {
   console.log(products);
 
   return (
-      <div className="mx-25">
+      <div className="mx-10">
         <title>My Listings</title>
       <div className="overflow-x-auto">
         <table className="table">
@@ -42,6 +42,7 @@ const MyProducts = () => {
             <tr>
               <th className="text-center">Number</th>
               <th>Name</th>
+              <th>Category</th>
               <th>Location</th>
               <th>Price</th>
               <th className="text-center">Delete/Edit</th>
@@ -72,6 +73,10 @@ const MyProducts = () => {
                         <div className="font-bold">{product?.name}</div>
                       </div>
                     </div>
+                  </td>
+                  <td>
+                    {product?.category}
+                    <br />
                   </td>
                   <td>
                     {product?.location}

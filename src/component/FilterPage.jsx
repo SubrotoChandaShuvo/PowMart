@@ -58,6 +58,7 @@ const FilterPage = () => {
                 </div>
 
                 <div className="flex justify-between items-center w-full text-[13px]">
+                  <span>Category: {service?.category}</span>
                   <span className="">Date: {service?.date}</span>
                 </div>
 

@@ -68,7 +68,7 @@ const router = createBrowserRouter([
       {
         path: "/stories",
         element: <SuccessStories/>
-      }
+      },
     ],
   },
 ]);

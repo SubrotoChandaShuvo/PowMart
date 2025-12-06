@@ -2,6 +2,7 @@ import React from "react";
 import Slider from "../component/Slider";
 import "animate.css";
 import ShopByCategory from "../component/ShopByCategory";
+import RecentAdded from "../component/RecentAdded";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
 
       <Slider />
       <ShopByCategory/>
+      <RecentAdded/>
     </div>
   );
 };
