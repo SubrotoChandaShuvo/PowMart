@@ -46,6 +46,7 @@ const AddProducts = () => {
 
   return (
     <div className="max-w-lg mx-auto my-10 bg-white backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20">
+        <title>Add Listings</title>
       <h2 className="text-2xl font-bold mb-6 text-center">Add Pet / Product</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">

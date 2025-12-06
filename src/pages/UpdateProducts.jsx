@@ -59,6 +59,7 @@ const UpdateProducts = () => {
 
   return (
     <div className="max-w-lg mx-auto my-10 bg-white backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20">
+        <title>Update Listings</title>
       <h2 className="text-2xl font-bold mb-6 text-center">Update Listing</h2>
 
       <form onSubmit={handleUpdate} className="space-y-5">
