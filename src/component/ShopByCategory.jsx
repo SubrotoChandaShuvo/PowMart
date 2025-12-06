@@ -2,17 +2,6 @@
 import { Link } from "react-router";
 
 const ShopByCategory = () => {
-//   const [services, setServices] = useState([]);
-
-//   useEffect(() => {
-//     fetch("http://localhost:3000/listings")
-//       .then((res) => res.json())
-//       .then((data) => setServices(data))
-//       .catch((err) => console.log(err));
-//   }, []);
-
-    // console.log(services);
-
 
   const categories = [
   {
@@ -50,7 +39,12 @@ const ShopByCategory = () => {
 
 
     <div className="w-full flex flex-col items-center py-10">
-      <h1 className="text-4xl font-bold mb-2">Shop by Category</h1>
+      <h3
+          className="text-2xl md:text-4xl lg:text-4xl font-bold text-center pb-2
+               bg-linear-to-r from-blue-500 via-purple-500 to-pink-500
+               bg-clip-text text-transparent"
+        >
+        Shop by Category</h3>
       <p className="text-gray-500 mb-10">
         Find everything your pet needs in one place.
       </p>
