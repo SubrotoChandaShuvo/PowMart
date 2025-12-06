@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
@@ -29,11 +30,17 @@ const AddProducts = () => {
       email,
     };
 
-    console.log(formData);
-    axios.post('http://localhost:3000/listings',formData)
-    .then(res=>{
-        console.log(res);        
+    // console.log(formData);
+    axios.post("http://localhost:3000/listings", formData)
+    .then((res) => {
+      console.log(res);
+      toast.success("Pet/Product added Successfully 🎉");
+      form.reset();
     })
+    .catch(err => {
+      console.log(err);
+      toast.error("Failed to add product!");
+    });
     
   };
 

@@ -61,27 +61,27 @@ const Navbar = () => {
             <li>
               {user && (
                 <NavLink
-                  to="/my-services"
-                  className={({ isActive }) =>
-                    isActive ? "text-blue-500 font-bold" : "text-gray-700"
-                  }
-                >
-                  My Products
-                </NavLink>
-              )}
-            </li>
-            <li>
-              {user && (
-                <NavLink
                   to="/addProducts"
                   className={({ isActive }) =>
                     isActive ? "text-blue-500 font-bold" : "text-gray-700"
                   }
                 >
-                  Add Products
+                  Add Listings
                 </NavLink>
               )}
             </li>
+            <li>
+            {user && (
+              <NavLink
+                to="/my-products"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Listings
+              </NavLink>
+            )}
+          </li>
             <li>
               {user && (
                 <NavLink
@@ -144,24 +144,24 @@ const Navbar = () => {
           <li>
             {user && (
               <NavLink
-                to="/my-products"
+                to="/addProducts"
                 className={({ isActive }) =>
                   isActive ? "text-blue-500 font-bold" : "text-gray-700"
                 }
               >
-                My Products
+                Add Listings
               </NavLink>
             )}
           </li>
           <li>
             {user && (
               <NavLink
-                to="/addProducts"
+                to="/my-products"
                 className={({ isActive }) =>
                   isActive ? "text-blue-500 font-bold" : "text-gray-700"
                 }
               >
-                Add Products
+                My Listings
               </NavLink>
             )}
           </li>

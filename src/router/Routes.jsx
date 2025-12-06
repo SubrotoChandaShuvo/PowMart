@@ -13,6 +13,7 @@ import PetAndSupplies from "../pages/PetAndSupplies";
 import AddProducts from "../pages/AddProducts";
 import FilterPage from "../component/FilterPage";
 import MyProducts from "../pages/MyProducts";
+import UpdateProducts from "../pages/UpdateProducts";
 
 const router = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
       {
         path: "/my-products",
         element: <PrivateRoute><MyProducts/></PrivateRoute>
+      },
+      {
+        path: "/update-products/:id",
+        element: <PrivateRoute><UpdateProducts/></PrivateRoute>
       },
       {
         path: "/stories",
