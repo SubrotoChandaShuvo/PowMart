@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const AddProducts = () => {
   const { user } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const AddProducts = () => {
 
     const name = form.name.value;
     const category = form.category.value;
-    const price = parseInt(form.price.values);
+    const price = parseInt(form.price.value);
     const location = form.location.value;
     const description = form.description.value;
     const image = form.image.value;
@@ -31,22 +32,44 @@ const AddProducts = () => {
     };
 
     // console.log(formData);
-    axios.post("http://localhost:3000/listings", formData)
-    .then((res) => {
-      console.log(res);
-      toast.success("Pet/Product added Successfully 🎉");
-      form.reset();
-    })
-    .catch(err => {
-      console.log(err);
-      toast.error("Failed to add product!");
-    });
-    
+    axios
+      .post("http://localhost:3000/listings", formData)
+      .then((res) => {
+        console.log(res);
+
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Your Pet/Product added Successfully.🎉",
+            icon: "success",
+            draggable: true,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        }
+        // toast.success("Pet/Product added Successfully 🎉");
+
+        form.reset();
+      })
+      .catch((err) => {
+        console.log(err);
+        // toast.error("Failed to add product!");
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong!",
+          footer: '<a href="#">Why do I have this issue?</a>',
+        });
+      });
   };
 
   return (
     <div className="max-w-lg mx-auto my-10 bg-white backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20">
-        <title>Add Listings</title>
+      <title>Add Listings</title>
       <h2 className="text-2xl font-bold mb-6 text-center">Add Pet / Product</h2>
 
       <form onSubmit={handleSubmit} className="space-y-5">

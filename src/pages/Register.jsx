@@ -6,6 +6,7 @@ import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const {
@@ -46,7 +47,12 @@ const Register = () => {
         })
           .then(() => {
             setUser(userCredential.user);
-            toast.success("Registration Successful! 🎉");
+            Swal.fire({
+              title: "Registration Successful! 🎉",
+              icon: "success",
+              draggable: true,
+            });
+            // toast.success("Registration Successful! 🎉");
             // console.log(userCredential.user);
             setLoading(false);
             navigate("/");
@@ -67,7 +73,12 @@ const Register = () => {
       .then((result) => {
         const user = result.user;
         setUser(user);
-        toast.success("Signup Successful! 🎉");
+        Swal.fire({
+          title: "Registration Successful! 🎉",
+          icon: "success",
+          draggable: true,
+        });
+        // toast.success("Signup Successful! 🎉");
         navigate("/");
       })
       .catch((error) => {
@@ -106,23 +117,23 @@ const Register = () => {
                 placeholder="Enter Your PhotoURL"
               />
               <label className="text-[15px]">Password</label>
-                            <div className="relative">
-                              <input
-                                name="password"
-                                type={showPass ? "text" : "password"}
-                                className="input w-full pr-10"
-                                placeholder="Password"
-                                aria-label="password"
-                              />
-                              <button
-                                type="button"
-                                onClick={() => setShowPass(!showPass)}
-                                className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-500"
-                                aria-label={showPass ? "Hide password" : "Show password"}
-                              >
-                                {showPass ? <FaEyeSlash /> : <FaEye />}
-                              </button>
-                            </div>
+              <div className="relative">
+                <input
+                  name="password"
+                  type={showPass ? "text" : "password"}
+                  className="input w-full pr-10"
+                  placeholder="Password"
+                  aria-label="password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPass(!showPass)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 cursor-pointer text-xl text-gray-500"
+                  aria-label={showPass ? "Hide password" : "Show password"}
+                >
+                  {showPass ? <FaEyeSlash /> : <FaEye />}
+                </button>
+              </div>
               <div className="">
                 <span className="pr-4">Already have an account? </span>
                 <Link className="link link-hover text-blue-500" to={"/login"}>

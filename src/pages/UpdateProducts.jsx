@@ -3,13 +3,14 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const UpdateProducts = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [product, setProduct] = useState();
   const [category, setCategory] = useState(product?.category || "");
-  const navigation = useNavigate()
+  const navigation = useNavigate();
 
   useEffect(() => {
     axios.get(`http://localhost:3000/listings/${id}`).then((res) => {
@@ -42,25 +43,48 @@ const UpdateProducts = () => {
       image,
       date,
       email,
-      createdAt: new Date,
+      createdAt: new Date(),
     };
 
-    axios.put(`http://localhost:3000/update/${id}`, formData)
-    .then(res=>{
-        console.log(res);
-        toast.success("Pet/Product Updated Successfully 🎉");
-        navigation('/my-products')
-        
-    })
-    .catch(err=>{
+    axios
+      .put(`http://localhost:3000/update/${id}`, formData)
+      .then((res) => {
+        // console.log(res);
+
+        if (res.data.acknowledged) {
+          Swal.fire({
+            title: "Your Pet/Product Updated Successfully.🎉",
+            icon: "success",
+            draggable: true,
+          });
+        } else {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        }
+        // toast.success("Pet/Product Updated Successfully 🎉");
+
+        navigation("/my-products");
+      })
+      .catch((err) => {
+        {
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: '<a href="#">Why do I have this issue?</a>',
+          });
+        }
         console.log(err);
-        
-    })
+      });
   };
 
   return (
     <div className="max-w-lg mx-auto my-10 bg-white backdrop-blur-md p-8 rounded-2xl shadow-xl border border-white/20">
-        <title>Update Listings</title>
+      <title>Update Listings</title>
       <h2 className="text-2xl font-bold mb-6 text-center">Update Listing</h2>
 
       <form onSubmit={handleUpdate} className="space-y-5">

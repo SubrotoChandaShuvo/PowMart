@@ -3,9 +3,9 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router";
 import auth from "../firebase/firebase.config";
 import { AuthContext } from "../Provider/AuthProvider";
-import toast from "react-hot-toast";
 import { FcGoogle } from "react-icons/fc";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { setUser, handleGoogleSignin, loading, setLoading } =
@@ -25,7 +25,12 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, pass)
       .then((userCredential) => {
         const user = userCredential.user;
-        toast.success("Login Successful! 🎉");
+        Swal.fire({
+          title: "Login Successful! 🎉",
+          icon: "success",
+          draggable: true,
+        });
+        // toast.success("Login Successful! 🎉");
         setUser(user);
         setLoading(false);
         navigate(location.state ? location.state : "/");
@@ -50,8 +55,13 @@ const Login = () => {
         const user = result.user;
         setUser(user);
         setLoading(false);
-        toast.success("Login Successful! 🎉");
-        navigate(location.state?location.state:'/');
+        Swal.fire({
+          title: "Login Successful! 🎉",
+          icon: "success",
+          draggable: true,
+        });
+        // toast.success("Login Successful! 🎉");
+        navigate(location.state ? location.state : "/");
       })
       .catch((error) => {
         console.log(error);
@@ -115,8 +125,11 @@ const Login = () => {
               </div>
               <div className="">
                 <span className="pr-4">Don't have an account? </span>
-                <Link className="link link-hover text-blue-500" to={"/register"}>
-                 Register
+                <Link
+                  className="link link-hover text-blue-500"
+                  to={"/register"}
+                >
+                  Register
                 </Link>
               </div>
               <button className="btn btn-primary transform transition-transform duration-300 hover:scale-102">

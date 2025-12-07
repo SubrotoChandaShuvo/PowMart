@@ -3,6 +3,7 @@ import { AuthContext } from "../Provider/AuthProvider";
 import { Link } from "react-router";
 import axios from "axios";
 import toast from "react-hot-toast";
+import Swal from "sweetalert2";
 
 const MyProducts = () => {
   const [products, setProducts] = useState([]);
@@ -12,29 +13,70 @@ const MyProducts = () => {
   useEffect(() => {
     fetch(`http://localhost:3000/my-products?email=${user?.email}`)
       .then((res) => res.json())
-      .then(data => setProducts(data))
+      .then((data) => setProducts(data))
       .catch((err) => console.log(err));
   }, [user?.email]);
 
-  const handleDelete=(id)=>{
-    axios.delete(`http://localhost:3000/delete/${id}`)
-    .then(res=>{
-        console.log(res.data);
-        toast.success("Delete Successful!")
-        const filterData =products.filter(product=>product?._id != id)
-        setProducts(filterData)
-    })
-    .catch(err=>{
-        console.log(err);
-        
-    })
-  }
+  const handleDelete = (id) => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-error",
+      },
+      buttonsStyling: false,
+    });
+    swalWithBootstrapButtons
+      .fire({
+        title: "Are you sure?",
+        text: "You won't be able to revert this!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.isConfirmed) {
+          axios
+            .delete(`http://localhost:3000/delete/${id}`)
+            .then((res) => {
+              console.log(res.data);
+
+              if (res.data.deletedCount) {
+                const filterData = products.filter(
+                  (product) => product?._id != id
+                );
+                setProducts(filterData);
+
+                swalWithBootstrapButtons.fire({
+                  title: "Deleted!",
+                  text: "Your file has been deleted.",
+                  icon: "success",
+                });
+              }
+              // toast.success("Delete Successful!");
+            })
+            .catch((err) => {
+              console.log(err);
+            });
+        } else if (
+          /* Read more about handling dismissals below */
+          result.dismiss === Swal.DismissReason.cancel
+        ) {
+          swalWithBootstrapButtons.fire({
+            title: "Cancelled",
+            text: "Your imaginary file is safe :)",
+            icon: "error",
+          });
+        }
+      });
+  };
 
   console.log(products);
 
   return (
-      <div className="mx-10">
-        <title>My Listings</title>
+    <div className="mx-10">
+      <title>My Listings</title>
       <div className="overflow-x-auto">
         <table className="table">
           {/* head */}
@@ -85,8 +127,15 @@ const MyProducts = () => {
                   <td>${product.price}</td>
                   <td className="text-center">
                     <div className="flex justify-center items-center gap-2 whitespace-nowrap">
-                      <button onClick={()=>handleDelete(product?._id)} className="btn btn-error btn-xs">Delete</button>
-                      <Link to={`/update-products/${product?._id}`}><button className="btn btn-primary btn-xs">Edit</button></Link>
+                      <button
+                        onClick={() => handleDelete(product?._id)}
+                        className="btn btn-error btn-xs"
+                      >
+                        Delete
+                      </button>
+                      <Link to={`/update-products/${product?._id}`}>
+                        <button className="btn btn-primary btn-xs">Edit</button>
+                      </Link>
                     </div>
                   </td>
                 </tr>
