@@ -7,19 +7,23 @@ import toast from "react-hot-toast";
 
 const Navbar = () => {
   const { user } = useContext(AuthContext);
-  const [isChecked, setIsChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(() => {
+    return localStorage.getItem("theme") === "dark";
+  });
 
   const handleThemeChange = () => {
-    setIsChecked((prev) => !prev);
+    setIsChecked(prev => !prev);
   };
 
   useEffect(() => {
-    document
-      .querySelector("html")
-      .setAttribute("data-theme", isChecked ? "dark" : "light");
+    const theme = isChecked ? "dark" : "light";
+
+    document.querySelector("html").setAttribute("data-theme", theme);
 
     const root = document.getElementById("root");
-    root.className = isChecked ? "bg-[#1a1a1a]":"bg-[#F1F5E8]" ;
+    root.className = isChecked ? "bg-[#1a1a1a]" : "bg-[#F1F5E8]";
+
+    localStorage.setItem("theme", theme);
   }, [isChecked]);
 
   const handleSignOut = () => {
