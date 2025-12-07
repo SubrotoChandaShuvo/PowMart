@@ -7,7 +7,7 @@ const RecentAdded = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/recent")
+      .get("https://backend-pawmart.vercel.app/recent")
       .then((res) => {
         setNewProd(res.data);
       })

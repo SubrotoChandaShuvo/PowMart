@@ -13,7 +13,7 @@ const ServiceDetails = () => {
   const navigation = useNavigate;
 
   useEffect(() => {
-    fetch(`http://localhost:3000/listings/${id}`)
+    fetch(`https://backend-pawmart.vercel.app/listings/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((err) => console.log(err));
@@ -49,7 +49,7 @@ const ServiceDetails = () => {
     
     // console.log(formData);
     
-    axios.post('http://localhost:3000/orders', formData)
+    axios.post('https://backend-pawmart.vercel.app/orders', formData)
     .then(res=>{
       console.log(res);
       form.reset();

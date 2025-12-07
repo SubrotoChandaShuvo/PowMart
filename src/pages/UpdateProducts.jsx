@@ -13,7 +13,7 @@ const UpdateProducts = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:3000/listings/${id}`).then((res) => {
+    axios.get(`https://backend-pawmart.vercel.app/listings/${id}`).then((res) => {
       setProduct(res.data);
       setCategory(res.data?.category || "Pet");
     });
@@ -47,7 +47,7 @@ const UpdateProducts = () => {
     };
 
     axios
-      .put(`http://localhost:3000/update/${id}`, formData)
+      .put(`https://backend-pawmart.vercel.app/update/${id}`, formData)
       .then((res) => {
         // console.log(res);
 

@@ -9,7 +9,7 @@ const FilterPage = () => {
     
 
     useEffect(() => {
-        fetch(`http://localhost:3000/listings/category/${encodeURIComponent(category)}`)
+        fetch(`https://backend-pawmart.vercel.app/listings/category/${encodeURIComponent(category)}`)
           .then((res) => res.json())
           .then((data) => setServices(data))
           .catch((err) => console.log(err));
