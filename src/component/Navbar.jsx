@@ -1,18 +1,19 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import auth from "../firebase/firebase.config";
 import { signOut } from "firebase/auth";
 import toast from "react-hot-toast";
+import { useContext } from "react";
+import Avatar from "./Avatar";
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
   const [isChecked, setIsChecked] = useState(() => {
     return localStorage.getItem("theme") === "dark";
   });
 
   const handleThemeChange = () => {
-    setIsChecked(prev => !prev);
+    setIsChecked((prev) => !prev);
   };
 
   useEffect(() => {
@@ -30,6 +31,8 @@ const Navbar = () => {
     signOut(auth);
     toast.success("Logout Successful! 🎉");
   };
+
+  const { user } = useContext(AuthContext);
 
   return (
     <div className="navbar bg-base-100 shadow-sm ">
@@ -124,18 +127,6 @@ const Navbar = () => {
                 </NavLink>
               )}
             </li>
-            <li>
-              {user && (
-                <NavLink
-                  to="/stories"
-                  className={({ isActive }) =>
-                    isActive ? "text-blue-500 font-bold" : "text-gray-700"
-                  }
-                >
-                  Stories
-                </NavLink>
-              )}
-            </li>
           </ul>
         </div>
         <Link to="/" className="">
@@ -219,18 +210,6 @@ const Navbar = () => {
               </NavLink>
             )}
           </li>
-          <li>
-            {user && (
-              <NavLink
-                to="/stories"
-                className={({ isActive }) =>
-                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
-                }
-              >
-                Stories
-              </NavLink>
-            )}
-          </li>
         </ul>
       </div>
 
@@ -273,6 +252,11 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
+
+          <div>
+            {user && <Avatar />}
+          </div>
+          
           <Link
             onClick={handleSignOut}
             className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"
@@ -321,6 +305,7 @@ const Navbar = () => {
               </svg>
             </label>
           </div>
+
           <Link
             to="/login"
             className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"

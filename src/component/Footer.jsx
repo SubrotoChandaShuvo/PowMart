@@ -49,7 +49,7 @@ const Footer = () => {
           <div className="container mx-auto px-6 py-10">
     
     
-            <div className="flex flex-col md:flex-row md:justify-between md:items-start">
+            <div className="flex flex-col md:flex-row md:justify-around md:items-start">
     
               {/* Brand */}
               <div className="mb-6 md:mb-0">

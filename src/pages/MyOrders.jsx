@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { jsPDF } from "jspdf";
+import autoTable from "jspdf-autotable";
 
 const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
@@ -15,6 +17,49 @@ const MyOrders = () => {
       });
   }, []);
   console.log(myOrders);
+
+  const exportPDF = () => {
+    const doc = new jsPDF();
+    doc.text("My Orders", 14, 20);
+
+    // Prepare table headers
+    const tableColumn = [
+      "No.",
+      "Product Name",
+      "Price",
+      "Phone",
+      "Location",
+      "Quantity",
+      "Total Price",
+      "Date",
+    ];
+
+    const tableRows = myOrders.map((order, index) => [
+      index + 1,
+      order.product_name,
+      `$${order.product_price}`,
+      order.phone,
+      order.address,
+      order.quantity,
+      `$${order.product_price * order.quantity}`,
+      new Date(order.date).toLocaleString("en-US", {
+        month: "2-digit",
+        day: "2-digit",
+        year: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true,
+      }),
+    ]);
+
+    autoTable(doc, {
+      head: [tableColumn],
+      body: tableRows,
+      startY: 30,
+    });
+
+    doc.save("my_orders.pdf");
+  };
 
   return (
     <div>
@@ -62,6 +107,14 @@ const MyOrders = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div className="text-center mt-8">
+        <button
+          onClick={exportPDF}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded"
+        >
+          Download PDF
+        </button>
       </div>
     </div>
   );

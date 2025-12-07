@@ -3,6 +3,8 @@ import Slider from "../component/Slider";
 import "animate.css";
 import ShopByCategory from "../component/ShopByCategory";
 import RecentAdded from "../component/RecentAdded";
+import WhyAdopt from "../component/WhyAdopt";
+import MeetPetHeroes from "../component/MeetPetHeroes";
 
 const Home = () => {
   return (
@@ -21,6 +23,8 @@ const Home = () => {
       <Slider />
       <ShopByCategory/>
       <RecentAdded/>
+      <WhyAdopt/>
+      <MeetPetHeroes/>
     </div>
   );
 };
