@@ -83,6 +83,18 @@ const Navbar = () => {
             )}
           </li>
             <li>
+            {user && (
+              <NavLink
+                to="/my-orders"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Orders
+              </NavLink>
+            )}
+          </li>
+            <li>
               {user && (
                 <NavLink
                   to="/profile"
@@ -162,6 +174,18 @@ const Navbar = () => {
                 }
               >
                 My Listings
+              </NavLink>
+            )}
+          </li>
+           <li>
+            {user && (
+              <NavLink
+                to="/my-orders"
+                className={({ isActive }) =>
+                  isActive ? "text-blue-500 font-bold" : "text-gray-700"
+                }
+              >
+                My Orders
               </NavLink>
             )}
           </li>

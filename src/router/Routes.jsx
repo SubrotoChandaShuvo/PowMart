@@ -14,6 +14,7 @@ import AddProducts from "../pages/AddProducts";
 import FilterPage from "../component/FilterPage";
 import MyProducts from "../pages/MyProducts";
 import UpdateProducts from "../pages/UpdateProducts";
+import MyOrders from "../pages/MyOrders";
 
 const router = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const router = createBrowserRouter([
       {
         path: "/update-products/:id",
         element: <PrivateRoute><UpdateProducts/></PrivateRoute>
+      },
+      {
+        path: "/my-orders",
+        element: <PrivateRoute><MyOrders/></PrivateRoute>
       },
       {
         path: "/stories",

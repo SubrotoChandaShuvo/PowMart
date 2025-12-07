@@ -35,7 +35,7 @@ return (
           {newProd.map((service) => (
             <div
               key={service.id}
-              className="card bg-base-100 md:w-90 lg:w-full pb-2 shadow-sm
+              className="card bg-base-100 md:w-90 lg:w-full pb-2 shadow-sm rounded-xl
             transform transition-transform duration-300 hover:scale-105"
             >
               <figure>

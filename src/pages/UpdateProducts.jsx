@@ -42,7 +42,7 @@ const UpdateProducts = () => {
       image,
       date,
       email,
-      createdAt: product?.createdAt,
+      createdAt: new Date,
     };
 
     axios.put(`http://localhost:3000/update/${id}`, formData)
@@ -50,6 +50,7 @@ const UpdateProducts = () => {
         console.log(res);
         toast.success("Pet/Product Updated Successfully 🎉");
         navigation('/my-products')
+        
     })
     .catch(err=>{
         console.log(err);

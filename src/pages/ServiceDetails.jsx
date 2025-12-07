@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import toast from "react-hot-toast";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 
@@ -10,6 +10,7 @@ const ServiceDetails = () => {
 
   const { id } = useParams();
   const { user } = useContext(AuthContext);
+  const navigation = useNavigate;
 
   useEffect(() => {
     fetch(`http://localhost:3000/listings/${id}`)
@@ -31,6 +32,7 @@ const ServiceDetails = () => {
     const address = form.address.value;
     const phone = form.phone.value;
     const note = form.note.value;
+    const date = new Date()
 
     const formData = {
       product_name,
@@ -41,7 +43,8 @@ const ServiceDetails = () => {
       buyerEmail,
       address,
       phone,
-      note,
+      date,
+      note
     };
     
     // console.log(formData);
@@ -49,8 +52,9 @@ const ServiceDetails = () => {
     axios.post('http://localhost:3000/orders', formData)
     .then(res=>{
       console.log(res);
+      form.reset();
       toast.success("Adapt/Order Successful! 🎉");
-      
+      navigation(`/detils/${id}`)
     })
     .catch(err=>{
       console.log(err);  
