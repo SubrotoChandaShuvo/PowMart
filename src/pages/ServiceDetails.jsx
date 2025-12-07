@@ -3,6 +3,7 @@ import toast from "react-hot-toast";
 import { useNavigate, useParams } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 const ServiceDetails = () => {
   const [product, setProduct] = useState([]);
@@ -19,47 +20,44 @@ const ServiceDetails = () => {
       .catch((err) => console.log(err));
   }, [id]);
 
-  // console.log(product);
+
   const handleOrder = (e) => {
     e.preventDefault();
     const form = e.target;
-    const product_name = form.product_name.value;
-    const product_price = parseInt(form.price.value);
-    const product_id = form.product_id.value;
-    const quantity = parseInt(form.quantity.value);
-    const buyerName = form.buyerName.value;
-    const buyerEmail = form.buyerEmail.value;
-    const address = form.address.value;
-    const phone = form.phone.value;
-    const note = form.note.value;
-    const date = new Date()
 
     const formData = {
-      product_name,
-      product_price,
-      product_id,
-      quantity,
-      buyerName,
-      buyerEmail,
-      address,
-      phone,
-      date,
-      note
+      product_name: form.product_name.value,
+      product_id: form.product_id.value,
+      quantity: Number(form.quantity.value || 1),
+      product_price: Number(form.price.value),
+      buyerName: form.buyerName.value,
+      buyerEmail: form.buyerEmail.value,
+      address: form.address.value,
+      date: form.date.value,
+      phone: form.phone.value,
+      note: form.note.value,
     };
-    
-    // console.log(formData);
-    
-    axios.post('https://backend-pawmart.vercel.app/orders', formData)
-    .then(res=>{
-      console.log(res);
-      form.reset();
-      toast.success("Adapt/Order Successful! 🎉");
-      navigation(`/detils/${id}`)
-    })
-    .catch(err=>{
-      console.log(err);  
-    })
 
+    axios
+      .post("https://backend-pawmart.vercel.app/orders", formData)
+      .then(() => {
+        document.getElementById("my_modal_3")?.close();
+        form.reset();
+
+        Swal.fire({
+          title: "Order placed successfully 🎉",
+          icon: "success",
+          confirmButtonText: "OK",
+        });
+      })
+      .catch((err) => {
+        console.error(err);
+        Swal.fire({
+          title: "Failed to place order",
+          text: "Please try again.",
+          icon: "error",
+        });
+      });
   };
 
   return (
@@ -77,7 +75,7 @@ const ServiceDetails = () => {
         <p>Location: {product?.location}</p>
         <p className="text-blue-400">Price: ${product?.price}</p>
 
-        {/* You can open the modal using document.getElementById('ID').showModal() method */}
+        
         <button
           className="btn btn-neutral transform transition-transform duration-300 hover:scale-102 mt-3"
           onClick={() => document.getElementById("my_modal_3").showModal()}
@@ -103,7 +101,7 @@ const ServiceDetails = () => {
                 name="product_name"
                 type="text"
                 className="input w-full mb-2"
-                // placeholder="Enter Your Email"
+                
               />
               <label className="text-[15px]">Product/Listing ID</label>
               <input
@@ -112,7 +110,7 @@ const ServiceDetails = () => {
                 name="product_id"
                 type="text"
                 className="input w-full mb-2"
-                // placeholder="Enter Your Email"
+                
               />
               <label className="text-[15px]">Quantity</label>
               <input
@@ -131,7 +129,7 @@ const ServiceDetails = () => {
                 name="price"
                 type="number"
                 className="input w-full mb-2"
-                // placeholder="Enter Your Email"
+                
               />
               <label className="text-[15px]">Buyer Name</label>
               <input
@@ -194,38 +192,6 @@ const ServiceDetails = () => {
             </form>
           </div>
         </dialog>
-
-        {/* <button
-          onClick={handleBookForm}
-          className="btn btn-neutral transform transition-transform duration-300 hover:scale-102 mt-3"
-        >
-          {!isBook ? "Book Service" : "Cancel Booking"}
-        </button> */}
-        {/* {isBook && (
-          <form className="fieldset  p-5 mt-5 rounded-2xl shadow shadow-gray-600">
-            <h1 className="text-xl font-bold">For Booking The Service</h1>
-            <label className="text-[15px]">Name</label>
-            <input
-              name="name"
-              type="text"
-              className="input w-full "
-              placeholder="Your Name"
-            />
-            <label className="text-[15px]">Email</label>
-            <input
-              name="email"
-              type="email"
-              className="input w-full mb-2"
-              placeholder="Enter Your Email"
-            />
-            <p
-              onClick={handleBook}
-              className="btn btn-primary transform transition-transform duration-300 hover:scale-102"
-            >
-              Book Now
-            </p>
-          </form> */}
-        {/* )} */}
       </div>
     </div>
   );

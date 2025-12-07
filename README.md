@@ -1,4 +1,4 @@
-# PowMart 🛒
+# PowMart
 
 ## Live Link: (https://cosmic-melba-af77ae.netlify.app/)
 ## Author : Subroto Chanda Shuvo
