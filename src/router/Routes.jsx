@@ -15,6 +15,8 @@ import FilterPage from "../component/FilterPage";
 import MyProducts from "../pages/MyProducts";
 import UpdateProducts from "../pages/UpdateProducts";
 import MyOrders from "../pages/MyOrders";
+import Contact from "../pages/Contact";
+import Terms from "../pages/Terms";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +75,14 @@ const router = createBrowserRouter([
       {
         path: "/stories",
         element: <SuccessStories/>
+      },
+      {
+        path: "/contact",
+        element: <Contact/>
+      },
+      {
+        path: "/terms",
+        element: <Terms/>
       },
     ],
   },
