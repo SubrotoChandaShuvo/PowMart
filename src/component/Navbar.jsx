@@ -131,8 +131,8 @@ const Navbar = () => {
         </div>
         <Link to="/" className="">
           <p
-            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 pl-2
-            text-3xl font-extrabold tracking-wide drop-shadow-[0_0_25px_rgba(168,85,247,0.5)]
+            className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 pl-1 sm:pl-2
+            text-xl sm:text-2xl lg:text-3xl font-extrabold tracking-wide drop-shadow-[0_0_25px_rgba(168,85,247,0.5)]
             animate-pulse"
           >
             PawMart
@@ -214,9 +214,9 @@ const Navbar = () => {
       </div>
 
       {user && (
-        <div className="navbar-end pr-3">
-          <div className="mr-2">
-            <label className="flex cursor-pointer gap-2">
+        <div className="navbar-end gap-1 sm:gap-2 pr-1 sm:pr-3 w-auto flex-nowrap">
+          <div className="mr-0 sm:mr-2 scale-75 sm:scale-100 origin-right">
+            <label className="flex cursor-pointer gap-1 sm:gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -235,7 +235,7 @@ const Navbar = () => {
                 onClick={handleThemeChange}
                 type="checkbox"
                 value="synthwave"
-                className="toggle theme-controller"
+                className="toggle theme-controller toggle-sm sm:toggle-md"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -253,23 +253,23 @@ const Navbar = () => {
             </label>
           </div>
 
-          <div>
+          <div className="scale-90 sm:scale-100 origin-right">
             {user && <Avatar />}
           </div>
           
           <Link
             onClick={handleSignOut}
-            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"
+            className="btn btn-sm sm:btn-md bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-md hover:opacity-70 px-3 sm:px-4 text-xs sm:text-base"
           >
             Logout
           </Link>
         </div>
       )}
       {!user && (
-        <div className="navbar-end pr-3">
+        <div className="navbar-end gap-1 sm:gap-2 pr-1 sm:pr-3 w-auto flex-nowrap">
           {/* theme toggler */}
-          <div className="mr-2">
-            <label className="flex cursor-pointer gap-2">
+          <div className="mr-0 sm:mr-2 scale-75 sm:scale-100 origin-right hidden md:block">
+            <label className="flex cursor-pointer gap-1 sm:gap-2">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="20"
@@ -288,7 +288,7 @@ const Navbar = () => {
                 onClick={handleThemeChange}
                 type="checkbox"
                 value="synthwave"
-                className="toggle theme-controller"
+                className="toggle theme-controller toggle-sm sm:toggle-md"
               />
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -308,13 +308,13 @@ const Navbar = () => {
 
           <Link
             to="/login"
-            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 rounded-md hover:opacity-70 text-lg"
+            className="btn btn-sm sm:btn-md bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-md hover:opacity-70 px-3 sm:px-4 text-xs sm:text-base"
           >
             Login
           </Link>
           <Link
             to="/register"
-            className="btn bg-linear-to-r from-blue-600 to-purple-600 text-white p-3 ml-1 rounded-md hover:opacity-70 text-lg"
+            className="btn btn-sm sm:btn-md bg-linear-to-r from-blue-600 to-purple-600 text-white rounded-md hover:opacity-70 px-3 sm:px-4 text-xs sm:text-base"
           >
             Register
           </Link>
