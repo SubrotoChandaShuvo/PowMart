@@ -2,7 +2,6 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
 import { useNavigate, useParams } from "react-router";
 import axios from "axios";
-import toast from "react-hot-toast";
 import Swal from "sweetalert2";
 
 const UpdateProducts = () => {
@@ -13,7 +12,7 @@ const UpdateProducts = () => {
   const navigation = useNavigate();
 
   useEffect(() => {
-    axios.get(`https://backend-pawmart.vercel.app/listings/${id}`).then((res) => {
+    axios.get(`http://localhost:3000/listings/${id}`).then((res) => {
       setProduct(res.data);
       setCategory(res.data?.category || "Pet");
     });
@@ -47,7 +46,7 @@ const UpdateProducts = () => {
     };
 
     axios
-      .put(`https://backend-pawmart.vercel.app/update/${id}`, formData)
+      .put(`http://localhost:3000/update/${id}`, formData)
       .then((res) => {
         // console.log(res);
 

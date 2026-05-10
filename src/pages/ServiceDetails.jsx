@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import toast from "react-hot-toast";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import { AuthContext } from "../Provider/AuthProvider";
 import axios from "axios";
 import Swal from "sweetalert2";
@@ -11,10 +10,9 @@ const ServiceDetails = () => {
 
   const { id } = useParams();
   const { user } = useContext(AuthContext);
-  const navigation = useNavigate;
 
   useEffect(() => {
-    fetch(`https://backend-pawmart.vercel.app/listings/${id}`)
+    fetch(`http://localhost:3000/listings/${id}`)
       .then((res) => res.json())
       .then((data) => setProduct(data))
       .catch((err) => console.log(err));
@@ -39,7 +37,7 @@ const ServiceDetails = () => {
     };
 
     axios
-      .post("https://backend-pawmart.vercel.app/orders", formData)
+      .post("http://localhost:3000/orders", formData)
       .then(() => {
         document.getElementById("my_modal_3")?.close();
         form.reset();

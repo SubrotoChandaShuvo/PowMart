@@ -33,7 +33,7 @@ const AddProducts = () => {
 
     // console.log(formData);
     axios
-      .post("https://backend-pawmart.vercel.app/listings", formData)
+      .post("http://localhost:3000/listings", formData)
       .then((res) => {
         console.log(res);
 
